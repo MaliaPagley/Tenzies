@@ -1,1 +1,1 @@
-TENZI ia a game that gives the player 10 dice. The object of the game is to role the dice until all the dice are the same number.
+Tenzies is a game that provides the player with 10 dice. The objective of the game is to roll the dice until all of them show the same number.
