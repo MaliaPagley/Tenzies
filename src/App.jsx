@@ -8,6 +8,23 @@ function App() {
   const [dice, setDice] = React.useState(allNewDice())
   const [tenzies, setTenzies] = React.useState(false)
 
+  const [windowSize, setWindowSize] = React.useState( {
+    width: undefined,
+    height: undefined,
+  });
+
+
+  function handleWindowsize() {
+    setWindowSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    })
+  }
+
+  React.useEffect(() => {
+    window.onresize = () => handleWindowsize()
+  }, [windowSize])
+
   React.useEffect(() => {
     const allHeld = dice.every(die => die.isHeld)
     const firstValue = dice[0].value
@@ -43,7 +60,12 @@ function App() {
       setDice(oldDice => oldDice.map(die => {
         return die.isHeld ? die : generateNewDie()
       }))
-    } else {
+    } else if(tenzies) {
+      setTimeout(() => {
+        setTenzies(false)
+    }, 100)
+    setDice(allNewDice())
+    }else {
       setTenzies(true)
       
       setDice(allNewDice())
@@ -67,7 +89,7 @@ const dieElements = dice.map(die => <Die
 
   return (
    <main>
-    {tenzies && <Confetti/>}
+    {tenzies && <Confetti width={windowSize.width} height={windowSize.height}/>}
     <h1 className="title">Tenzies<span>mini game</span></h1>
     <hr width="30%" 
         size="10" 
