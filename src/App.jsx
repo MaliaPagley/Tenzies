@@ -7,7 +7,7 @@ import Confetti from 'react-confetti'
 function App() {
   const [dice, setDice] = React.useState(allNewDice())
   const [tenzies, setTenzies] = React.useState(false)
-
+  const [rollCount, setRollCount] = React.useState(0)
   const [windowSize, setWindowSize] = React.useState( {
     width: undefined,
     height: undefined,
@@ -31,7 +31,6 @@ function App() {
     const allSameValue = dice.every(die => die.value === firstValue)
     if (allHeld && allSameValue) {
       setTenzies(true)
-      console.log('you won!')
     }
   }, [dice])
 
@@ -60,15 +59,18 @@ function App() {
       setDice(oldDice => oldDice.map(die => {
         return die.isHeld ? die : generateNewDie()
       }))
+      setRollCount(count => count + 1)
     } else if(tenzies) {
       setTimeout(() => {
         setTenzies(false)
     }, 100)
     setDice(allNewDice())
+    setRollCount(0)
+  
     }else {
       setTenzies(true)
-      
       setDice(allNewDice())
+      
     }
  }
 
@@ -89,7 +91,12 @@ const dieElements = dice.map(die => <Die
 
   return (
    <main>
-    {tenzies && <Confetti width={windowSize.width} height={windowSize.height}/>}
+    {tenzies && 
+    <Confetti 
+      width={windowSize.width} 
+      height={windowSize.height} 
+      numberOfPieces={50}
+      />}
     <h1 className="title">Tenzies<span>mini game</span></h1>
     <hr width="30%" 
         size="10" 
@@ -101,7 +108,10 @@ const dieElements = dice.map(die => <Die
       
         {dieElements}
       </div>
-      <button className="roll-dice"onClick={rollNewDice}>{tenzies ? "New Game" : "Roll"}</button>
+      <div id="roll"className="roll-container">
+        <h1 className="roll-count">Roll Count: {rollCount}</h1>
+        <button className="roll-dice"onClick={rollNewDice}>{tenzies ? "New Game" : "Roll"}</button>
+      </div>
    </main>
   )
 }
