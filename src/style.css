@@ -9,7 +9,7 @@ body {
 }
 main {
   background-color: #F5F5F5;
-  height: 500px;
+  height: 520px;
   max-width: 800px;
   border-radius: 5px;
   padding: 20px;
@@ -54,6 +54,7 @@ hr {
   grid-template: auto auto / repeat(5, 1fr);
   gap: 30px;
 }
+
 .die-face {
   height: 50px;
   width: 50px;
@@ -69,7 +70,6 @@ hr {
   font-size: 2rem;
 }
 .roll-dice {
-  margin-left: 20px;
   margin-top: 40px;
   margin-bottom: 30px;
   padding: 17px;
@@ -100,14 +100,31 @@ hr {
   align-self: center;
   
 }
+
 .roll-container {
 display: grid;
-grid-template-columns: auto 1fr;
+grid-template-columns: 1fr 1fr 1fr;
 grid-gap: 95px;
 align-content: center;   
-margin-right: 35%;
+/* margin-right: 35%; */
+}
+.roll-timer {
+  margin-top: 50px;
+  font-size: 20px;
+  align-content: baseline;
+  grid-column: 3;
+
+}
+.roll-timer span{
+  font-size: 20px;
+  align-content: baseline;
 }
 @media screen and (max-width: 517px) {
+  
+  .roll-timer {
+    margin-top: 3px;
+    margin-left: 20px;
+  }
   .roll-container {
     display: inline-block;
     align-content: center;
@@ -116,7 +133,7 @@ margin-right: 35%;
   
     }
     .roll-dice {
-      margin: 20px;
+      margin: 5px;
     }
     .roll-count {
       padding-top: 10px;
@@ -136,7 +153,7 @@ margin-right: 35%;
   }
   .roll-container {
     grid-gap: 40px;
-    margin-right: 30%;
+  
     margin-left: 5%;
     }
   main {
