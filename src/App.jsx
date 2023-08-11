@@ -2,7 +2,7 @@ import React from 'react';
 import { nanoid } from 'nanoid'
 import Die from './Die'
 import Confetti from 'react-confetti'
-import Timer from './timer';
+import Timer from './Timer';
 
 function App() {
   const [dice, setDice] = React.useState(allNewDice());
@@ -71,7 +71,6 @@ function App() {
       stop()
     }
   }, [dice])
-
 
   function generateNewDie() {
     return {
